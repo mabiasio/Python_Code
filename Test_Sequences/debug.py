@@ -1,31 +1,19 @@
-from Modules.qsfp_dd_tl import *
+from Modules.qsfp28 import *
 import os
 import sys
 
 
-module=qsfp_dd_tl()
+module=qsfp28()
 
 
 
 print module.get_serial_number()
 print module.get_voltage()
 print module.get_temperature()
-module.set_cutoff(90)
+#module.set_cutoff(90)
+
+module.CDR_enable()
 
 
-
-#module.set_dissipation_5()
-#time.sleep(10)
-#module.set_dissipation_7()
-#time.sleep(10)
-module.set_dissipation_9()
-time.sleep(10)
-#module.set_dissipation_11()
-#time.sleep(10)
-#module.set_dissipation_13()
-#time.sleep(10)
-#module.set_dissipation_15()
-#time.sleep(10)
-module.set_dissipation_off()
 
 

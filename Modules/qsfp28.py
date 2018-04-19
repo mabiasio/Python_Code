@@ -1,7 +1,7 @@
 import time
 import math
 import string
-from aardvark_py import *
+from Aardvark.aardvark_py import *
 from array import array
 
 class qsfp28:

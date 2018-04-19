@@ -80,7 +80,17 @@ class Agilent33600A:
 			self.connessione.read_until('33600A>')
 		except:
 			print "Telnet connection error"
-			return None			
+			return None
+
+	def set_hi_z (self,channel):
+		#channel = integer parameter for channel selection
+		#offset = string paramenter for offset selection in Volt pp (+X.XE+0Y format)
+		try:
+			self.connessione.write('OUTP'+str(channel)+':LOAD INF'+'\n')
+			self.connessione.read_until('33600A>')
+		except:
+			print "Telnet connection error"
+			return None
 			
 	def close (self):
 		try:

@@ -12,7 +12,7 @@ module=sfp28()
 
 TE=DLI100G40G('10.58.241.161','8090')
 mm=Fluke_8846A(12)
-
+gen.set_hi_z(1)
 
 #module configuration
 M_SN=module.get_serial_number()

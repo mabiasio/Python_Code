@@ -20,15 +20,22 @@ gen.identification()
 
 
 gen.output_off(1)
+gen.set_hi_z(1)
 gen.set_wfm(1,'TRI')
 gen.set_frequency(1,'23E-06') # 23 uHZ
 gen.set_amplitude(1,'3.5E-1') #340 mVPP
 
 
+gen.output_off(2)
+gen.set_hi_z(2)
+gen.set_wfm(2,'NOIS')
+gen.set_noise_bw(2,'1E7') # 10 MHz
+gen.set_amplitude(2,'10') #10 VPP
+
 
 #PSU settings 3,3 VDC + external signal
 psu.set_signal_source('BOTH')
-psu.set_voltage('3.54')
+psu.set_voltage('3.55')
 psu.output_on()
 time.sleep(1)
 
@@ -51,7 +58,7 @@ module.set_CTLE_fixed(1,1,1,1)
 module.set_page(0)
 time.sleep(0.5)
 
-log=open("Test_1_qsfp28_"+ M_VN + '_' + M_SN + time.strftime('%H_%M_%d_%m_%Y.txt'),"w")
+log=open("Test_2_qsfp28_"+ M_VN + '_' + M_SN + time.strftime('%H_%M_%d_%m_%Y.txt'),"w")
 head="LOS_status,Voltage_DDM,Temperature_DDM,RX1,RX2,RX3,RX4,BIAS1,BIAS2,BIAS3,BIAS4,TX1,TX2,TX3,TX4,Multimeter,TIMESTAMP" + '\n'
 log.write(head)
 
@@ -59,6 +66,7 @@ pymsgbox.alert('Please check voltage level on Fluke Multimeter and Adjust it acc
 
 #Waveform generator output on
 gen.output_on(1)
+gen.output_on(2)
 
 pymsgbox.alert('Set Properly Test Equipment')
 

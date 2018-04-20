@@ -58,7 +58,17 @@ class Agilent33600A:
 			self.connessione.read_until('33600A>')
 		except:
 			print "Telnet connection error"
-			return None	
+			return None
+
+	def set_noise_bw (self,channel,bandwidth):
+		#channel = integer parameter for channel selection
+		#freq = string paramenter for frequency selection in Hertz (+X.XE+0Y format)
+		try:
+			self.connessione.write('SOUR'+str(channel)+':FUNC:NOIS:BAND '+bandwidth+'\n')
+			self.connessione.read_until('33600A>')
+		except:
+			print "Telnet connection error"
+			return None
 			
 	def set_amplitude (self,channel,amp):
 		#channel = integer parameter for channel selection

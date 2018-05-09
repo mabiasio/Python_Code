@@ -650,8 +650,8 @@ class qsfp28:
         return result_string
 
     def set_page(self,a):
-        if ((a<0) or (a>2)):
-            print "Upper Page can be 0,1,2. Please set the correct page"
+        if ((a<0) or (a>3)):
+            print "Upper Page can be 0,1,2,3. Please set the correct page"
         else:
             time.sleep(0.04)
             data_out = array('B', [127,a])
@@ -660,5 +660,5 @@ class qsfp28:
                 print "I2C write error. Written bytes = "+ str(res)+"\n"
                 self.i2c_counter = self.i2c_counter + 1
                 return "None"
-            time.sleep(0.04)
+
 

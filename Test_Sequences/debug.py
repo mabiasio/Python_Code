@@ -10,9 +10,10 @@ module=qsfp28()
 print module.get_serial_number()
 print module.get_voltage()
 print module.get_temperature()
-#module.set_cutoff(90)
 
-module.CDR_enable()
+module.read_all_mem()
+
+#module.CDR_enable()
 
 
 

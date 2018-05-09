@@ -22,7 +22,7 @@ class qsfp28:
         # No Power supply provided by Aardwark module
         aa_target_power(self.handle, AA_TARGET_POWER_NONE)
         # I2C Bitrate
-        aa_i2c_bitrate(self.handle, 100)
+        aa_i2c_bitrate(self.handle, 400)
 
     def get_i2c_counter(self):
         return self.i2c_counter
@@ -661,4 +661,75 @@ class qsfp28:
                 self.i2c_counter = self.i2c_counter + 1
                 return "None"
 
+    def read_all_mem (self):
+        data_out = array('B', [0])
+        data_in = array('B', [0 for i in range(128)])
+        res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
+        if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
+            print "I2C read error. Error return code = " + str(res[0]) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+        data_out = array('B', [127, 0])
+        res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)  # Set upper page to 0
+        if (res < len(data_out)):
+            print "I2C write error. Written bytes = " + str(res) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+        data_out = array('B', [128])
+        data_in = array('B', [0 for i in range(128)])
+        res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
+        if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
+            print "I2C read error. Error return code = " + str(res[0]) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+        data_out = array('B', [127, 1])
+        res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)  # Set upper page to 0
+        if (res < len(data_out)):
+            print "I2C write error. Written bytes = " + str(res) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+        data_out = array('B', [128])
+        data_in = array('B', [0 for i in range(128)])
+        res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
+        if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
+            print "I2C read error. Error return code = " + str(res[0]) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+        data_out = array('B', [127, 2])
+        res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)  # Set upper page to 0
+        if (res < len(data_out)):
+            print "I2C write error. Written bytes = " + str(res) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+        data_out = array('B', [128])
+        data_in = array('B', [0 for i in range(128)])
+        res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
+        if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
+            print "I2C read error. Error return code = " + str(res[0]) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+        data_out = array('B', [127, 3])
+        res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)  # Set upper page to 0
+        if (res < len(data_out)):
+            print "I2C write error. Written bytes = " + str(res) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+        data_out = array('B', [128])
+        data_in = array('B', [0 for i in range(128)])
+        res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
+        if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
+            print "I2C read error. Error return code = " + str(res[0]) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+
+    def single_write(self,address,data):
+        time.sleep(0.04)
+        data_out = array('B', [address,data])
+        res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)
+        if (res < len(data_out)):
+            print "I2C write error. Written bytes = "+ str(res)+"\n"
+            self.i2c_counter = self.i2c_counter + 1
+            return "None"
+
+    def single_read(self,address):
+        time.sleep(0.04)
+        data_out = array('B', [address])
+        data_in = array('B', [0 for i in range(1)])
+        res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
+        if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
+            print "I2C read error. Error return code = " + str(res[0]) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+            return "None"
+        return res
 

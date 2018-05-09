@@ -11,7 +11,7 @@ print module.get_serial_number()
 print module.get_voltage()
 print module.get_temperature()
 
-module.read_all_mem()
+print module.get_RX_power()
 
 #module.CDR_enable()
 

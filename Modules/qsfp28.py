@@ -22,7 +22,7 @@ class qsfp28:
         # No Power supply provided by Aardwark module
         aa_target_power(self.handle, AA_TARGET_POWER_NONE)
         # I2C Bitrate
-        aa_i2c_bitrate(self.handle, 400)
+        aa_i2c_bitrate(self.handle, 100)
 
     def get_i2c_counter(self):
         return self.i2c_counter
@@ -673,6 +673,7 @@ class qsfp28:
         if (res < len(data_out)):
             print "I2C write error. Written bytes = " + str(res) + "\n"
             self.i2c_counter = self.i2c_counter + 1
+        time.sleep(0.02)
         data_out = array('B', [128])
         data_in = array('B', [0 for i in range(128)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
@@ -684,6 +685,7 @@ class qsfp28:
         if (res < len(data_out)):
             print "I2C write error. Written bytes = " + str(res) + "\n"
             self.i2c_counter = self.i2c_counter + 1
+        time.sleep(0.02)
         data_out = array('B', [128])
         data_in = array('B', [0 for i in range(128)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
@@ -695,6 +697,7 @@ class qsfp28:
         if (res < len(data_out)):
             print "I2C write error. Written bytes = " + str(res) + "\n"
             self.i2c_counter = self.i2c_counter + 1
+        time.sleep(0.02)
         data_out = array('B', [128])
         data_in = array('B', [0 for i in range(128)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
@@ -706,6 +709,7 @@ class qsfp28:
         if (res < len(data_out)):
             print "I2C write error. Written bytes = " + str(res) + "\n"
             self.i2c_counter = self.i2c_counter + 1
+        time.sleep(0.02)
         data_out = array('B', [128])
         data_in = array('B', [0 for i in range(128)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)

@@ -146,6 +146,8 @@ module.read_all_mem()
 
 module.read_all_mem()
 
+print module.get_i2c_counter()
+
 
 
 

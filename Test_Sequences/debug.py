@@ -7,19 +7,21 @@ module=qsfp28()
 
 
 
+print module.single_read(0x00)
+
 #module.CDR_disable()
 
 #time.sleep(2)
 
 #module.CDR_enable()
 
-print module.get_serial_number()
-print module.get_voltage()
-print module.get_temperature()
+#print module.get_serial_number()
+#print module.get_voltage()
+#print module.get_temperature()
 
-print module.get_RX_power()
+#print module.get_RX_power()
 
-print module.poller()
+#print module.poller()
 
 #module.CDR_enable()
 

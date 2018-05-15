@@ -735,5 +735,5 @@ class qsfp28:
             print "I2C read error. Error return code = " + str(res[0]) + "\n"
             self.i2c_counter = self.i2c_counter + 1
             return "None"
-        return res
+        return hex(data_in[0])
 

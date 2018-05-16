@@ -16,7 +16,7 @@ class qsfp_dd_tl:
         # Ensure that the I2C subsystem is enabled
         aa_configure(self.handle, AA_CONFIG_SPI_I2C)
         # Pull up resitors already present in the MCB
-        aa_i2c_pullup(self.handle, AA_I2C_PULLUP_NONE)
+        aa_i2c_pullup(self.handle, AA_I2C_PULLUP_BOTH)
         # I2C Master configuration
         aa_i2c_slave_disable(self.handle)
         # No Power supply provided by Aardwark module

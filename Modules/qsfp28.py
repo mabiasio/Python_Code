@@ -662,6 +662,7 @@ class qsfp28:
                 return "None"
 
     def read_all_mem (self):
+        time.sleep(0.04)
         data_out = array('B', [0])
         data_in = array('B', [0 for i in range(128)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
@@ -673,7 +674,7 @@ class qsfp28:
         if (res < len(data_out)):
             print "I2C write error. Written bytes = " + str(res) + "\n"
             self.i2c_counter = self.i2c_counter + 1
-        time.sleep(0.02)
+        time.sleep(0.04)
         data_out = array('B', [128])
         data_in = array('B', [0 for i in range(128)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
@@ -685,7 +686,7 @@ class qsfp28:
         if (res < len(data_out)):
             print "I2C write error. Written bytes = " + str(res) + "\n"
             self.i2c_counter = self.i2c_counter + 1
-        time.sleep(0.02)
+        time.sleep(0.04)
         data_out = array('B', [128])
         data_in = array('B', [0 for i in range(128)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
@@ -697,7 +698,7 @@ class qsfp28:
         if (res < len(data_out)):
             print "I2C write error. Written bytes = " + str(res) + "\n"
             self.i2c_counter = self.i2c_counter + 1
-        time.sleep(0.02)
+        time.sleep(0.04)
         data_out = array('B', [128])
         data_in = array('B', [0 for i in range(128)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
@@ -709,7 +710,7 @@ class qsfp28:
         if (res < len(data_out)):
             print "I2C write error. Written bytes = " + str(res) + "\n"
             self.i2c_counter = self.i2c_counter + 1
-        time.sleep(0.02)
+        time.sleep(0.04)
         data_out = array('B', [128])
         data_in = array('B', [0 for i in range(128)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)

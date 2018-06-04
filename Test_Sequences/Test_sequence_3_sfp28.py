@@ -12,7 +12,7 @@ module=sfp28()
 
 TE=DLI100G40G('10.58.241.161','8090')
 mm=Fluke_8846A(12)
-gen.set_hi_z(1)
+#gen.set_hi_z(1)
 
 #module configuration
 M_SN=module.get_serial_number()
@@ -21,7 +21,7 @@ M_VN=module.get_vendor_name()
 print 'Module under test id: ' + M_VN + ' ' + M_SN + '\n'
 
 
-log=open(Test_3_M_VN + '_' + M_SN + time.strftime('%H_%M_%d_%m_%Y.txt'),"w")
+log=open('Test_3_'+ M_VN + '_' + M_SN + time.strftime('%H_%M_%d_%m_%Y.txt'),"w")
 head="LOS_status,Voltage_DDM,Temperature_DDM,RX1,BIAS1,TX1,Multimeter,TIMESTAMP" + '\n'
 log.write(head)
 

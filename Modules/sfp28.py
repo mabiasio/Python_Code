@@ -1,9 +1,7 @@
 import time
 import math
-import string
-from aardvark_py import *
+from Aardvark.aardvark_py import *
 from array import array
-
 
 class sfp28:
     def __init__(self):
@@ -13,7 +11,7 @@ class sfp28:
         self.i2c_counter = 0
         if (self.handle <= 0):
             print "Unable to open Aardvark device on port 0"
-            print "Error code = %d" % handle
+            print "Error code = %d" % str(self.handle)
             sys.exit()
         # Ensure that the I2C subsystem is enabled
         aa_configure(self.handle, AA_CONFIG_SPI_I2C)

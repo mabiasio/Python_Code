@@ -26,7 +26,7 @@ gen.set_amplitude(1, '3.5E-1')  # 340 mVPP
 
 # PSU settings 3,3 VDC + external signal
 psu.set_signal_source('BOTH')
-psu.set_voltage('3.331')
+psu.set_voltage('3.364')
 psu.output_on()
 time.sleep(1)
 
@@ -50,7 +50,7 @@ print 'Module under test id: ' + M_VN + ' ' + M_SN + '\n'
 # time.sleep(0.5)
 
 
-log = open('Test_1_' + M_VN + '_' + M_SN + time.strftime('%H_%M_%d_%m_%Y.txt'), "w")
+log = open('Test_2_' + M_VN + '_' + M_SN + time.strftime('%H_%M_%d_%m_%Y.txt'), "w")
 head="LOS_status,Voltage_DDM,Temperature_DDM,RX1,BIAS1,TX1,Multimeter,TIMESTAMP" + '\n'
 log.write(head)
 

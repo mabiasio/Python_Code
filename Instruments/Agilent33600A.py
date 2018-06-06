@@ -64,7 +64,7 @@ class Agilent33600A:
 		#channel = integer parameter for channel selection
 		#freq = string paramenter for frequency selection in Hertz (+X.XE+0Y format)
 		try:
-			self.connessione.write('SOUR'+str(channel)+':FUNC:NOIS:BAND '+bandwidth+'\n')
+			self.connessione.write('SOUR'+str(channel)+':FUNC:NOIS:BWID '+bandwidth+'\n')
 			self.connessione.read_until('33600A>')
 		except:
 			print "Telnet connection error"
@@ -97,6 +97,54 @@ class Agilent33600A:
 		#offset = string paramenter for offset selection in Volt pp (+X.XE+0Y format)
 		try:
 			self.connessione.write('OUTP'+str(channel)+':LOAD INF'+'\n')
+			self.connessione.read_until('33600A>')
+		except:
+			print "Telnet connection error"
+			return None
+
+	def set_am_modulation (self,channel,format):
+		#channel = integer parameter for channel selection
+		# format = string paramenter for wfm type selection (SIN,SQU,RAMP,PULS,TRI,PRBS,NOIS,ARB)
+		try:
+			self.connessione.write('SOUR'+str(channel)+':AM:INT:FUNC '+ format + '\n')
+			self.connessione.read_until('33600A>')
+		except:
+			print "Telnet connection error"
+			return None
+
+	def set_am_frequency (self,channel,frequency):
+		#channel = integer parameter for channel selection
+		# freq = string paramenter for frequency selection in Hertz (+X.XE+0Y format)
+		try:
+			self.connessione.write('SOUR'+str(channel)+':AM:INT:FREQ '+ frequency + '\n')
+			self.connessione.read_until('33600A>')
+		except:
+			print "Telnet connection error"
+			return None
+
+	def set_am_depth (self,channel,dpt):
+		#channel = integer parameter for channel selection
+		# dpt = string paramenter for modulation depth (+X.XE+0Y format)
+		try:
+			self.connessione.write('SOUR'+str(channel)+':AM:DEPT '+ dpt + '\n')
+			self.connessione.read_until('33600A>')
+		except:
+			print "Telnet connection error"
+			return None
+
+	def set_am_modulation_on (self,channel):
+		#channel = integer parameter for channel selection
+		try:
+			self.connessione.write('SOUR'+str(channel)+':AM:STAT 1'+ '\n')
+			self.connessione.read_until('33600A>')
+		except:
+			print "Telnet connection error"
+			return None
+
+	def set_am_modulation_off (self,channel):
+		#channel = integer parameter for channel selection
+		try:
+			self.connessione.write('SOUR'+str(channel)+':AM:STAT 0'+ '\n')
 			self.connessione.read_until('33600A>')
 		except:
 			print "Telnet connection error"

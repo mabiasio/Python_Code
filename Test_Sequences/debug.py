@@ -16,12 +16,9 @@ gen = Agilent33600A('10.58.241.171')
 
 print gen.identification()
 
-gen.set_wfm(2,'NOIS')
-gen.set_noise_bw(2,'10000000')
-gen.set_amplitude(2, '1.540')  # 350 mVPP
-gen.set_am_modulation(2,'SIN')
-gen.set_am_frequency(2,'50')
-gen.set_am_depth(2,'30')
-gen.set_am_modulation_on(2)
+gen.set_wfm(2, 'SIN')
+gen.set_amplitude(2,'0.25')
+gen.set_sweep_parameters(2,'100000','10000000','100')
+gen.set_sweep_on(2)
 
 

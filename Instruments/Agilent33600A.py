@@ -141,10 +141,44 @@ class Agilent33600A:
 			print "Telnet connection error"
 			return None
 
+	def set_sweep_on (self,channel):
+		#channel = integer parameter for channel selection
+		try:
+			self.connessione.write('SOUR'+str(channel)+':SWE:STAT 1'+ '\n')
+			self.connessione.read_until('33600A>')
+		except:
+			print "Telnet connection error"
+			return None
+
 	def set_am_modulation_off (self,channel):
 		#channel = integer parameter for channel selection
 		try:
 			self.connessione.write('SOUR'+str(channel)+':AM:STAT 0'+ '\n')
+			self.connessione.read_until('33600A>')
+		except:
+			print "Telnet connection error"
+			return None
+
+	def set_sweep_off (self,channel):
+		#channel = integer parameter for channel selection
+		try:
+			self.connessione.write('SOUR'+str(channel)+':SWE:STAT 0'+ '\n')
+			self.connessione.read_until('33600A>')
+		except:
+			print "Telnet connection error"
+			return None
+
+	def set_sweep_parameters (self,channel,start,stop,time):
+		# channel = integer parameter for channel selection
+		# start = string parameter for start frequency
+		# stop = string parameter for stop frequency
+		# time = string pamater for sweeping time in seconds
+		try:
+			self.connessione.write('SOUR'+str(channel)+':FREQ:STAR '+ start + '\n')
+			self.connessione.read_until('33600A>')
+			self.connessione.write('SOUR' + str(channel) + ':FREQ:STOP ' + stop + '\n')
+			self.connessione.read_until('33600A>')
+			self.connessione.write('SOUR' + str(channel) + ':SWE:TIME ' + time + '\n')
 			self.connessione.read_until('33600A>')
 		except:
 			print "Telnet connection error"

@@ -459,6 +459,24 @@ class qsfp28:
             return "None"
         return [str(hex(data_in[0]))[2:].zfill(2)[0],str(hex(data_in[0]))[2:].zfill(2)[1],str(hex(data_in[1]))[2:].zfill(2)[0],str(hex(data_in[1]))[2:].zfill(2)[1]]
 
+    def get_RX_out_emphasis(self):
+        time.sleep(0.04)
+        data_out = array('B', [127, 3])
+        res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)  # Set upper page to 3
+        if (res < len(data_out)):
+            print "I2C write error. Written bytes = " + str(res) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+            return "None"
+        time.sleep(0.04)
+        data_out = array('B', [236])
+        data_in = array('B', [0 for i in range(2)])
+        res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
+        if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
+            print "I2C read error. Error return code = " + str(res[0]) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+            return "None"
+        return [str(hex(data_in[0]))[2:].zfill(2)[0],str(hex(data_in[0]))[2:].zfill(2)[1],str(hex(data_in[1]))[2:].zfill(2)[0],str(hex(data_in[1]))[2:].zfill(2)[1]]
+
     def set_RX_out_amplitude(self,a,b,c,d):
         time.sleep(0.04)
         data_out = array('B', [127, 3])
@@ -475,6 +493,23 @@ class qsfp28:
             self.i2c_counter = self.i2c_counter + 1
             return "None"
         print "RX Out Amplitude updated"
+
+    def set_RX_out_emphasis(self,a,b,c,d):
+        time.sleep(0.04)
+        data_out = array('B', [127, 3])
+        res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)  # Set upper page to 3
+        if (res < len(data_out)):
+            print "I2C write error. Written bytes = " + str(res) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+            return "None"
+        time.sleep(0.04)
+        data_out = array('B', [236, int(str(a) + str(b), 16), int(str(c) + str(d), 16)])
+        res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)
+        if (res < len(data_out)):
+            print "I2C write error. Written bytes = " + str(res) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+            return "None"
+        print "RX Out Emphasis updated"
 
     def TX_enable(self):
         time.sleep(0.04)

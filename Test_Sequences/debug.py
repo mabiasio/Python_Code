@@ -1,5 +1,5 @@
 import pymsgbox
-from Modules.sfp28 import *
+from Modules.qsfp28 import *
 from Instruments.Fluke_8846A import *
 from Instruments.KikusuiPBZ20 import *
 from Instruments.Agilent33600A import *
@@ -8,17 +8,22 @@ import time
 import os
 
 
-#module=sfp28()
-#psu = KikusuiPBZ20('10.58.241.170')
-gen = Agilent33600A('10.58.241.171')
-#TE=DLI100G40G('10.58.241.161','8090')
-#mm=Fluke_8846A(12)
+module=qsfp28()
 
-print gen.identification()
+print module.get_serial_number()
+print module.get_temperature()
+print module.get_voltage()
 
-gen.set_wfm(2, 'SIN')
-gen.set_amplitude(2,'0.25')
-gen.set_sweep_parameters(2,'100000','10000000','100')
-gen.set_sweep_on(2)
 
+
+module.set_CTLE_fixed(8,8,8,8)
+
+module.set_RX_out_amplitude(3,3,3,3)
+
+module.set_RX_out_emphasis(7,7,7,7)
+print module.get_CTLE()
+
+print module.get_RX_out_amplitude()
+
+print module.get_RX_out_emphasis()
 

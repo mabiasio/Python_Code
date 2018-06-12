@@ -14,16 +14,18 @@ print module.get_serial_number()
 print module.get_temperature()
 print module.get_voltage()
 
+#module.CDR_enable()
 
 
-module.set_CTLE_fixed(8,8,8,8)
 
-module.set_RX_out_amplitude(3,3,3,3)
+#module.set_CTLE_fixed(3,3,3,3)
+#module.set_RX_out_amplitude(2,2,2,2)
+#module.set_RX_out_emphasis(0,0,0,0)
 
-module.set_RX_out_emphasis(7,7,7,7)
 print module.get_CTLE()
 
 print module.get_RX_out_amplitude()
 
 print module.get_RX_out_emphasis()
 
+print module.poller()

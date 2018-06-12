@@ -566,7 +566,7 @@ class qsfp28:
         tmp = int(res,0)
         voltage = (tmp * 6.55)/65535
         #Rx_Power_1_Reading
-        data_out = array('B', [50])
+        data_out = array('B', [34])
         data_in = array('B', [0 for i in range(2)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
         if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
@@ -575,7 +575,7 @@ class qsfp28:
             return "None"
         RX_1= 10*math.log10((int((hex(data_in[0])+str(hex(data_in[1])[2:]).zfill(2)),16)+1)/10000.0)
         #Rx_Power_2_Reading
-        data_out = array('B', [52])
+        data_out = array('B', [36])
         data_in = array('B', [0 for i in range(2)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
         if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
@@ -584,7 +584,7 @@ class qsfp28:
             return "None"
         RX_2= 10*math.log10((int((hex(data_in[0])+str(hex(data_in[1])[2:]).zfill(2)),16)+1)/10000.0)
         #Rx_Power_3_Reading
-        data_out = array('B', [54])
+        data_out = array('B', [38])
         data_in = array('B', [0 for i in range(2)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
         if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
@@ -593,7 +593,7 @@ class qsfp28:
             return "None"
         RX_3= 10*math.log10((int((hex(data_in[0])+str(hex(data_in[1])[2:]).zfill(2)),16)+1)/10000.0)
         #Rx_Power_4_Reading
-        data_out = array('B', [56])
+        data_out = array('B', [40])
         data_in = array('B', [0 for i in range(2)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
         if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):

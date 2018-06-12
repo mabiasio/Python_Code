@@ -28,7 +28,7 @@ gen.set_amplitude(1,'3.5E-1') #340 mVPP
 
 #PSU settings 3,3 VDC + external signal
 psu.set_signal_source('BOTH')
-psu.set_voltage('3.54')
+psu.set_voltage('3.603')
 psu.output_on()
 time.sleep(1)
 
@@ -47,7 +47,7 @@ module.CDR_enable()
 time.sleep(0.5)
 module.TX_enable()
 module.set_CTLE_adaptive_disable()
-module.set_CTLE_fixed(1,1,1,1)
+module.set_CTLE_fixed(3,3,3,3)
 module.set_page(0)
 time.sleep(0.5)
 

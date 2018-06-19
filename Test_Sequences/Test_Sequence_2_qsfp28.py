@@ -18,26 +18,30 @@ mm=Fluke_8846A(12)
 psu.identification()
 gen.identification()
 
-
 gen.output_off(1)
-gen.set_hi_z(1)
-gen.set_wfm(1,'TRI')
-gen.set_frequency(1,'23E-06') # 23 uHZ
-gen.set_amplitude(1,'3.5E-1') #340 mVPP
-
-
 gen.output_off(2)
-gen.set_hi_z(2)
+
+#Setting CH one
+gen.set_wfm(1, 'TRI')
+gen.set_frequency(1, '23E-06')  # 23 uHZ
+gen.set_amplitude(1, '3.5E-1')  # 350 mVPP
+
+#Setting CH two
 gen.set_wfm(2,'NOIS')
-gen.set_noise_bw(2,'1E7') # 10 MHz
-gen.set_amplitude(2,'10') #10 VPP
+gen.set_noise_bw(2,'10000000')
+gen.set_amplitude(2, '5')  # 350 mVPP
+gen.set_am_modulation(2,'SIN')
+gen.set_am_frequency(2,'50')
+gen.set_am_depth(2,'30')
+gen.set_am_modulation_on(2)
 
 
-#PSU settings 3,3 VDC + external signal
+# PSU settings 3,3 VDC + external signal
 psu.set_signal_source('BOTH')
-psu.set_voltage('3.55')
+psu.set_voltage('3.6')
 psu.output_on()
 time.sleep(1)
+
 
 
 #module configuration
@@ -54,7 +58,8 @@ module.CDR_enable()
 time.sleep(0.5)
 module.TX_enable()
 module.set_CTLE_adaptive_disable()
-module.set_CTLE_fixed(1,1,1,1)
+module.set_CTLE_fixed(3,3,3,3)
+module.set_RX_out_emphasis(2,2,2,2)
 module.set_page(0)
 time.sleep(0.5)
 
@@ -66,7 +71,6 @@ pymsgbox.alert('Please check voltage level on Fluke Multimeter and Adjust it acc
 
 #Waveform generator output on
 gen.output_on(1)
-gen.output_on(2)
 
 pymsgbox.alert('Set Properly Test Equipment')
 

@@ -21,6 +21,8 @@ print module.get_voltage()
 
 module.high_power_enable()
 
+module.close_handle()
+
 #module.set_CTLE_fixed(3,3,3,3)
 #module.set_RX_out_amplitude(2,2,2,2)
 #module.set_RX_out_emphasis(0,0,0,0)

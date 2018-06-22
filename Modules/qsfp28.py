@@ -24,6 +24,9 @@ class qsfp28:
         # I2C Bitrate
         aa_i2c_bitrate(self.handle, 100)
 
+    def close_handle(self):
+        aa_close(self.handle)
+
     def get_i2c_counter(self):
         return self.i2c_counter
 		

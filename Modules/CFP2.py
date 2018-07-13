@@ -46,6 +46,18 @@ class cfp2:
             SN = SN + chr(item)
         return SN
 
+    def get_vendor_PN(self):
+        PN_RAW=[]
+        for i in range (0,15):
+            transaction(0, self.PHY_address, self.port_address, 0x8034+i)
+            PN_RAW.append(transaction(2, self.PHY_address, self.port_address, 0x8034+i))
+        print PN_RAW
+        PN=''
+        for item in PN_RAW:
+            PN = PN + chr(item)
+        return PN
+
+
     def get_vendor_name(self):
         SN_RAW=[]
         for i in range (0,15):

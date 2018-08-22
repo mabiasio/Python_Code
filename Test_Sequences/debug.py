@@ -15,11 +15,12 @@ print module.get_serial_number()
 print module.get_temperature()
 print module.get_voltage()
 
+module.read_all_mem()
+
 #module.set_RX_out_emphasis(2,2,2,2)
 
 #module.CDR_enable()
 
-module.high_power_enable()
 
 module.close_handle()
 

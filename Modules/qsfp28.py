@@ -707,6 +707,9 @@ class qsfp28:
         if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
             print "I2C read error. Error return code = " + str(res[0]) + "\n"
             self.i2c_counter = self.i2c_counter + 1
+        print "Page 0 Lower"
+        print data_in
+        time.sleep(0.04)
         data_out = array('B', [127, 0])
         res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)  # Set upper page to 0
         if (res < len(data_out)):
@@ -719,6 +722,9 @@ class qsfp28:
         if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
             print "I2C read error. Error return code = " + str(res[0]) + "\n"
             self.i2c_counter = self.i2c_counter + 1
+        print "Page 0 Upper"
+        print data_in
+        time.sleep(0.04)
         data_out = array('B', [127, 1])
         res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)  # Set upper page to 0
         if (res < len(data_out)):
@@ -731,6 +737,9 @@ class qsfp28:
         if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
             print "I2C read error. Error return code = " + str(res[0]) + "\n"
             self.i2c_counter = self.i2c_counter + 1
+        print "Page 1 Upper"
+        print data_in
+        time.sleep(0.04)
         data_out = array('B', [127, 2])
         res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)  # Set upper page to 0
         if (res < len(data_out)):
@@ -743,6 +752,9 @@ class qsfp28:
         if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
             print "I2C read error. Error return code = " + str(res[0]) + "\n"
             self.i2c_counter = self.i2c_counter + 1
+        print "Page 2 Upper"
+        print data_in
+        time.sleep(0.04)
         data_out = array('B', [127, 3])
         res = aa_i2c_write(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out)  # Set upper page to 0
         if (res < len(data_out)):
@@ -755,6 +767,9 @@ class qsfp28:
         if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
             print "I2C read error. Error return code = " + str(res[0]) + "\n"
             self.i2c_counter = self.i2c_counter + 1
+        print "Page 3 Upper"
+        print data_in
+        time.sleep(0.04)
 
     def single_write(self,address,data):
         time.sleep(0.04)

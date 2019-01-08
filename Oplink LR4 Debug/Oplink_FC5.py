@@ -130,6 +130,8 @@ module.set_page(3)
 
 module.set_page(3)
 
+module.set_CTLE_fixed(8,8,8,8)
+
 module.single_read(0xF1)
 
 module.single_write(0xF1,0x0F)

@@ -9,7 +9,7 @@ print module.get_SN()
 print module.get_vendor_name()
 print module.get_vendor_PN()
 
-module.set_ctle(10,10,10,10)
+module.set_ctle(4,4,4,4)
 print module.get_ctle()
 print module.get_TX_power()
 print module.get_RX_power()

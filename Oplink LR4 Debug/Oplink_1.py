@@ -8,7 +8,7 @@ module=qsfp28()
 
 module.single_write(0x62,0xF0)
 
-#module.read_all_mem()
+module.read_all_mem()
 
 time.sleep(0.1)
 

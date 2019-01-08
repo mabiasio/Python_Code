@@ -21,11 +21,24 @@ gen.identification()
 gen.output_off(1)
 gen.output_off(2)
 
+#Setting CH one
+gen.set_wfm(1, 'TRI')
+gen.set_frequency(1, '23E-06')  # 23 uHZ
+gen.set_amplitude(1, '3.45E-1')  # 350 mVPP
+
+#Setting CH two
+gen.set_wfm(2,'NOIS')
+gen.set_noise_bw(2,'10000000')
+gen.set_amplitude(2, '11')  # 350 mVPP
+gen.set_am_modulation(2,'SIN')
+gen.set_am_frequency(2,'50')
+gen.set_am_depth(2,'70')
+gen.set_am_modulation_on(2)
 
 
 # PSU settings 3,3 VDC + external signal
 psu.set_signal_source('BOTH')
-psu.set_voltage('3.7')
+psu.set_voltage('3.666')
 psu.output_on()
 time.sleep(1)
 
@@ -38,25 +51,27 @@ M_VN=module.get_vendor_name()
 print 'Module under test id: ' + M_VN + ' ' + M_SN + '\n'
 
 #Pseudo-initialization sequence
-time.sleep(0.5)
-module.high_power_enable()
-time.sleep(0.5)
-module.CDR_enable()
-time.sleep(0.5)
-module.TX_enable()
-module.set_CTLE_adaptive_disable()
-module.set_CTLE_fixed(3,3,3,3)
-module.set_RX_out_emphasis(2,2,2,2)
-module.set_page(0)
-time.sleep(0.5)
+#time.sleep(0.5)
+#module.high_power_enable()
+#time.sleep(0.5)
+#module.CDR_enable()
+#time.sleep(0.5)
+#module.TX_enable()
+#module.set_CTLE_adaptive_disable()
+#module.set_CTLE_fixed(1,1,1,1)
+#module.set_RX_out_emphasis(1,1,1,1)
+#module.set_page(0)
+#time.sleep(0.5)
 
-log=open("Test_4_HV_qsfp28_"+ M_VN + '_' + M_SN + time.strftime('%H_%M_%d_%m_%Y.txt'),"w")
+log=open("Test_2_qsfp28_"+ M_VN + '_' + M_SN + time.strftime('%H_%M_%d_%m_%Y.txt'),"w")
 head="LOS_status,Voltage_DDM,Temperature_DDM,RX1,RX2,RX3,RX4,BIAS1,BIAS2,BIAS3,BIAS4,TX1,TX2,TX3,TX4,Multimeter,TIMESTAMP" + '\n'
 log.write(head)
 
-pymsgbox.alert('Please check voltage level on Fluke Multimeter and Adjust it accordingly. Please set sweep on Kikusui PSU')
+pymsgbox.alert('Please check voltage level on Fluke Multimeter and Adjust it accordingly')
 
 #Waveform generator output on
+gen.output_on(1)
+gen.output_on(2)
 
 pymsgbox.alert('Set Properly Test Equipment')
 
@@ -65,7 +80,7 @@ print "Test Started at " + now
 
 TE.start_counters()
 
-for i in range (0,50): # minutes of test, test duration in minutes
+for i in range (0,750): # minutes of test, test duration in minutes
 	print "Minute n: "+str(i)+'\n'
 	for k in range (1,60):
 		poll=module.poller()
@@ -84,7 +99,9 @@ print "I2C Errors occured"
 print module.get_i2c_counter()
 TE.logout()
 log.close()
-
+#psu.output_off()
+gen.output_off(1)
+gen.output_off(2)
 psu.close()
 gen.close()
 

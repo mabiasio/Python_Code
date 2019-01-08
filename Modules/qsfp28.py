@@ -536,7 +536,7 @@ class qsfp28:
 
     def poller(self):
         #Byte 3 reading
-        data_out = array('B', [3])
+        data_out = array('B', [2])
         data_in = array('B', [0 for i in range(1)])
         res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
         if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
@@ -775,4 +775,15 @@ class qsfp28:
             self.i2c_counter = self.i2c_counter + 1
             return "None"
         return hex(data_in[0])
+
+    def get_status(self):
+        time.sleep(0.04)
+        data_out = array('B', [0])
+        data_in = array('B', [0 for i in range(20)])
+        res = aa_i2c_write_read(self.handle, self.addr, AA_I2C_NO_FLAGS, data_out, data_in)
+        if (res[0] == 1) or (res[0] == 3) or (res[0] == 4) or (res[0] == 5) or (res[0] == 6):
+            print "I2C read error. Error return code = " + str(res[0]) + "\n"
+            self.i2c_counter = self.i2c_counter + 1
+            return "None"
+        return data_in
 
